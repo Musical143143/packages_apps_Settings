@@ -1,0 +1,48 @@
+From 829d0433776820bb78bce33a0607837e48befb56 Mon Sep 17 00:00:00 2001
+From: Musical143143 <basub4615@gmail.com>
+Date: Wed, 28 Oct 2026 10:57:34 +0530
+Subject: [PATCH] Settings: add music dynamic island switch
+
+Adds a switch to the Bluenixx display page that writes the
+music_dynamic_island_enabled system setting read by SystemUI.
+
+---
+ res/xml/bluenixx_explore_display_settings.xml              | 7 +++++++
+ .../settings/bluenixx/BluenixxExploreDisplaySettings.java  | 3 +++
+ 2 files changed, 10 insertions(+)
+
+diff --git a/res/xml/bluenixx_explore_display_settings.xml b/res/xml/bluenixx_explore_display_settings.xml
+index 5476e0a..41373b8 100644
+--- a/res/xml/bluenixx_explore_display_settings.xml
++++ b/res/xml/bluenixx_explore_display_settings.xml
+@@ -33,6 +33,13 @@
+             android:defaultValue="true" />
+ 
+ 
++        <SwitchPreferenceCompat
++            android:key="music_dynamic_island_enabled"
++            android:title="Música na ilha dinâmica"
++            android:summary="Exibir o player de música como segunda cápsula na barra de status"
++            android:persistent="false"
++            android:defaultValue="true" />
++
+         <SwitchPreferenceCompat
+             android:key="bluenixx_disable_secure_windows"
+             android:title="Permitir capturas em apps protegidos"
+diff --git a/src/com/android/settings/bluenixx/BluenixxExploreDisplaySettings.java b/src/com/android/settings/bluenixx/BluenixxExploreDisplaySettings.java
+index 86e3bc7..c37df71 100644
+--- a/src/com/android/settings/bluenixx/BluenixxExploreDisplaySettings.java
++++ b/src/com/android/settings/bluenixx/BluenixxExploreDisplaySettings.java
+@@ -34,6 +34,9 @@ public class BluenixxExploreDisplaySettings extends DashboardFragment {
+         setupDynamicBarPreference(
+                 "bluenixx_dynamic_bar_charging",
+                 "bluenixx_dynamic_bar_charging", true);
++        setupDynamicBarPreference(
++                "music_dynamic_island_enabled",
++                "music_dynamic_island_enabled", true);
+         setupSecureWindowsPreference();
+     }
+ 
+-- 
+2.43.0
+
